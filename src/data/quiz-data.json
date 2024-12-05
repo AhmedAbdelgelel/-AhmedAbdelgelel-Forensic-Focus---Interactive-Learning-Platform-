@@ -1,0 +1,430 @@
+{
+  "cases": [
+    {
+      "id": "case-001",
+      "title": "Case of Two Corpses Found on the Desert Road",
+      "sections": {
+        "overview": {
+          "content": "In a horrifying incident that occurred on the desert road, two bodies were found buried just one meter below the surface. The bodies were in an advanced state of decomposition, suggesting that the crime took place some time ago.",
+          "image": "/evidence/case1/overview.jpg"
+        },
+        "available_evidence": {
+          "content": [
+            "The Bodies: Two bodies were discovered buried on the desert road. They were in an advanced stage of decomposition.",
+            "Crime Tools: A sharp knife and cleaver were found near the bodies.",
+            "Blood Traces: Traces of blood were found near the victims.",
+            "The Location: The desert road appears to be a secluded area."
+          ],
+          "image": "/evidence/case1/evidence.jpg"
+        },
+        "preliminary_analysis": {
+          "content": [
+            "Possible Motives: The murders could have been motivated by revenge or robbery.",
+            "Time and Place: The location suggests the crime occurred during isolation.",
+            "Forensic Evidence: Blood traces and weapons can help identify the perpetrator."
+          ],
+          "image": "/evidence/case1/analysis.jpg"
+        },
+        "objective": {
+          "content": [
+            "Investigate the crime scene and analyze available evidence",
+            "Determine the cause and time of death",
+            "Identify potential suspects and establish motive",
+            "Collect and process forensic evidence"
+          ],
+          "image": "/evidence/case1/objective.jpg"
+        }
+      },
+      "questions": {
+        "multiple_choice": {
+          "title": "Multiple Choice Questions",
+          "questions": [
+            {
+              "id": "mc1",
+              "question": "What was the condition of the bodies when they were found?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Fresh and intact",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "In an advanced stage of decomposition",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Mummified",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Burnt",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "id": "mc2",
+              "question": "Which tools were found near the bodies?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A hammer and rope",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "A sharp knife and cleaver",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "A gun and a baseball bat",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "A shovel and a wrench",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ],
+          "images": [
+            "/evidence/case1/mc1.jpg",
+            "/evidence/case1/mc2.jpg"
+          ]
+        },
+        "open_ended": {
+          "title": "Open-Ended Questions",
+          "questions": [
+            {
+              "id": "oe1",
+              "question": "How can the sharp knife and cleaver found at the crime scene help identify the method of the attack?",
+              "maxScore": 5,
+              "rubric": "Consider weapon analysis, wound patterns, and force used"
+            },
+            {
+              "id": "oe2",
+              "question": "Why is it important to analyze the blood traces found near the bodies?",
+              "maxScore": 5,
+              "rubric": "Consider DNA analysis, blood pattern analysis, and timeline reconstruction"
+            }
+          ],
+          "images": [
+            "/evidence/case1/oe1.jpg",
+            "/evidence/case1/oe2.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "id": "case-002",
+      "title": "Assault Investigation at Memorial Park",
+      "sections": {
+        "overview": {
+          "content": "A violent assault occurred at Memorial Park during late evening hours. The victim was found unconscious near the park's fountain with multiple injuries. Security cameras in the area captured partial footage of the incident.",
+          "image": "/evidence/case2/overview.jpg"
+        },
+        "available_evidence": {
+          "content": [
+            "Victim's Condition: Multiple bruises and a head injury, victim was unconscious when found",
+            "Security Footage: Partial video capture of the incident from nearby cameras",
+            "Physical Evidence: Blood stains on the ground, scattered personal belongings",
+            "Witness Statements: Two joggers reported hearing a commotion"
+          ],
+          "image": "/evidence/case2/evidence.jpg"
+        },
+        "preliminary_analysis": {
+          "content": [
+            "Attack Pattern: Signs of a violent confrontation with multiple impacts",
+            "Time Frame: Incident occurred between 9 PM and 10 PM",
+            "Scene Analysis: Evidence suggests the victim was attacked from behind"
+          ],
+          "image": "/evidence/case2/analysis.jpg"
+        },
+        "objective": {
+          "content": [
+            "Investigate the crime scene and analyze available evidence",
+            "Determine the cause and time of the assault",
+            "Identify potential suspects and establish motive",
+            "Collect and process forensic evidence"
+          ],
+          "image": "/evidence/case2/objective.jpg"
+        }
+      },
+      "questions": {
+        "multiple_choice": {
+          "title": "Multiple Choice Questions",
+          "questions": [
+            {
+              "id": "mc1",
+              "question": "What key evidence was found at the crime scene?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Only witness statements",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Security footage and blood stains",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Weapon used in the assault",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Fingerprints of the attacker",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "id": "mc2",
+              "question": "When did the assault likely occur?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Early morning",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Between 9 PM and 10 PM",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "During afternoon",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "After midnight",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ],
+          "images": [
+            "/evidence/case2/mc1.jpg",
+            "/evidence/case2/mc2.jpg"
+          ]
+        },
+        "open_ended": {
+          "title": "Open-Ended Questions",
+          "questions": [
+            {
+              "id": "oe1",
+              "question": "How can the security footage help in identifying the perpetrator despite being partial?",
+              "maxScore": 5,
+              "rubric": "Consider analysis of physical characteristics, movement patterns, and timing of events"
+            },
+            {
+              "id": "oe2",
+              "question": "What forensic techniques would be most useful in analyzing the blood stains found at the scene?",
+              "maxScore": 5,
+              "rubric": "Consider blood pattern analysis, DNA testing, and crime scene reconstruction"
+            }
+          ],
+          "images": [
+            "/evidence/case2/oe1.jpg",
+            "/evidence/case2/oe2.jpg"
+          ]
+        }
+      }
+    },
+    {
+      "id": "case-003",
+      "title": "The Midnight Murder at the Entrance",
+      "sections": {
+        "overview": {
+          "content": "In a horrifying incident that occurred in a residential neighborhood in New York City, the body of a man in his mid-40s was found lying at the entrance of an apartment building. The victim had been repeatedly stabbed in the chest and abdomen, which led to his death at the scene. The area around the crime scene was quiet, and no one was noticed at the time of the attack. The body was discovered late at night near the building's door, adding to the mystery surrounding the attacker. Several pieces of physical evidence were discovered at the crime scene, including a blood-stained handkerchief, a piece of cloth from the perpetrator's clothing, and a blood-stained knife found near the victim.",
+          "image": "/evidence/murder-scene.jpg"
+        },
+        "available_evidence": {
+          "content": [
+            "The Victim: The victim is a man in his mid-40s who had been repeatedly stabbed. He was transported to the hospital but succumbed to his injuries after a prolonged period.",
+            "Blood-Stained Handkerchief: A handkerchief stained with blood was found near the body. The evidence suggests that the handkerchief might have been part of the attacker's belongings or used to contain the bleeding or wipe away the blood during the assault.",
+            "Piece of Cloth from the Attacker's Clothing: A torn piece of fabric from the attacker's clothing was found near the crime scene, suggesting that the attacker may have been injured during a struggle with the victim, causing the clothing to tear.",
+            "The Knife: A blood-stained knife was found near the victim. The knife is believed to be the weapon used in the crime, and its proximity to the body suggests that it was likely discarded hastily after the attack.",
+            "Fingerprints of the Attacker: Fingerprints were found on the knife discovered at the crime scene. Analyzing these fingerprints could help identify the attacker if they match someone in the police database."
+          ],
+          "image": "/evidence/crime-evidence.jpg"
+        },
+        "preliminary_analysis": {
+          "content": [
+            "Possible Motives: The motive behind the murder could be personal, indicating a pre-existing conflict between the victim and the attacker. The crime may have been the result of an argument or a long-standing feud. The lack of theft or other criminal motives points to a personal revenge or anger-driven attack.",
+            "Time and Location: The crime occurred late at night, meaning the area was likely empty at the time. The location of the crime, right at the entrance of the building, suggests that the attacker may have planned the crime or was acting in a fit of rage or desperation.",
+            "Forensic Evidence: Analyzing the fingerprints on the knife could be crucial in the investigation. Additionally, examining the torn piece of cloth and the blood-stained handkerchief might provide further clues about the identity of the attacker or additional details about the crime.",
+            "Potential Witnesses: Given the late hour of the crime and the quietness of the neighborhood, eyewitnesses are unlikely. However, surveillance cameras from neighboring buildings might provide valuable information regarding the suspect's movements or any suspicious vehicles in the area."
+          ],
+          "image": "/evidence/analysis-scene.jpg"
+        },
+        "objective": {
+          "content": [
+            "Investigate the crime scene and analyze available evidence",
+            "Determine the cause and time of death",
+            "Identify potential suspects and establish motive",
+            "Collect and process forensic evidence"
+          ],
+          "image": "/evidence/investigation-plan.jpg"
+        }
+      },
+      "questions": {
+        "multiple_choice": {
+          "title": "Multiple Choice Questions",
+          "questions": [
+            {
+              "id": "mc1",
+              "question": "What weapon did the attacker use in the crime?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Gun",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Knife",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Wooden Bat",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Pistol",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "id": "mc2",
+              "question": "What type of evidence was found near the body?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Torn piece of fabric",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Mobile phone",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Credit card",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Car key",
+                  "isCorrect": false
+                }
+              ]
+            },
+            {
+              "id": "mc3",
+              "question": "When did the crime likely occur?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Early morning",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Afternoon",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Evening",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Late at night",
+                  "isCorrect": true
+                }
+              ]
+            },
+            {
+              "id": "mc4",
+              "question": "What is the most likely motive behind the crime?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Theft",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Personal revenge",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Financial dispute",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Random act of violence",
+                  "isCorrect": false
+                }
+              ]
+            }
+          ],
+          "images": [
+            "/evidence/multiple-choice-1.jpg",
+            "/evidence/multiple-choice-2.jpg"
+          ]
+        },
+        "open_ended": {
+          "title": "Open-Ended Questions",
+          "questions": [
+            {
+              "id": "oe1",
+              "question": "How could the fingerprints on the knife help in identifying the attacker?",
+              "maxScore": 5,
+              "rubric": "Consider database matching, prior criminal records, and forensic analysis techniques"
+            },
+            {
+              "id": "oe2",
+              "question": "What role could the torn piece of cloth linked to the attacker play in the investigation?",
+              "maxScore": 5,
+              "rubric": "Consider fabric analysis, DNA evidence, and physical matching with suspect's clothing"
+            },
+            {
+              "id": "oe3",
+              "question": "How could surveillance cameras from neighboring buildings assist in solving the case?",
+              "maxScore": 5,
+              "rubric": "Consider timeline reconstruction, suspect identification, and movement patterns"
+            },
+            {
+              "id": "oe4",
+              "question": "How might the blood-stained handkerchief provide insight into the nature of the relationship between the attacker and the victim?",
+              "maxScore": 5,
+              "rubric": "Consider DNA analysis, personal items significance, and behavioral implications"
+            }
+          ],
+          "images": [
+            "/evidence/open-ended-1.jpg",
+            "/evidence/open-ended-2.jpg"
+          ]
+        }
+      }
+    }
+  ]
+}
