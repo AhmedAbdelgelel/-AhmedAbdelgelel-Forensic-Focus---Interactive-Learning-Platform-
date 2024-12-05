@@ -7,13 +7,12 @@ const quizAttemptSchema = new mongoose.Schema({
         required: true
     },
     quizId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Quiz',
+        type: String,
         required: true
     },
     answers: [{
         questionId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             required: true
         },
         selectedAnswer: {

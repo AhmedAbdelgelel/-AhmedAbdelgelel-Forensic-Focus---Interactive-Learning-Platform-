@@ -17,10 +17,12 @@ mongoose.connect(process.env.MONGODB_URI)
 // Routes
 const adminRoutes = require('./routes/admin.routes');
 const userRoutes = require('./routes/user.routes');
+const quizRoutes = require('./routes/quiz.routes');
 
 // Route Middleware
 app.use('/api/admin', adminRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/quiz', quizRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

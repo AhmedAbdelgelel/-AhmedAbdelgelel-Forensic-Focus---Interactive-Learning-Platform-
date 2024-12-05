@@ -29,9 +29,9 @@ const protect = async (req, res, next) => {
 
             // Check if this is an admin route
             if (req.baseUrl === '/api/admin') {
-                req.user = await Admin.findById(decoded.id).select('-password');
+                req.user = await Admin.findById(decoded.id);
             } else {
-                req.user = await User.findById(decoded.id).select('-password');
+                req.user = await User.findById(decoded.id);
             }
 
             if (!req.user) {
@@ -51,7 +51,7 @@ const protect = async (req, res, next) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Server error'
+            message: 'Server error in auth middleware'
         });
     }
 };

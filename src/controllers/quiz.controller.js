@@ -52,8 +52,8 @@ exports.startQuiz = async (req, res) => {
     const userId = req.user._id;
 
     const existingAttempt = await QuizAttempt.findOne({
-        user: userId,
-        quiz: quizId,
+        userId: userId,
+        quizId: quizId,
         completed: false
     });
 
@@ -66,8 +66,8 @@ exports.startQuiz = async (req, res) => {
     }
 
     const newAttempt = await QuizAttempt.create({
-        user: userId,
-        quiz: quizId,
+        userId: userId,
+        quizId: quizId,
         answers: [],
         score: 0,
         startedAt: new Date()
@@ -82,53 +82,90 @@ exports.startQuiz = async (req, res) => {
 
 // Submit answer for quiz
 exports.submitAnswer = async (req, res) => {
-    const { quizId } = req.params;
-    const { questionId, answer } = req.body;
-    const userId = req.user._id;
+    try {
+        const { quizId } = req.params;
+        const { questionId, answer } = req.body;
+        const userId = req.user._id;
 
-    const attempt = await QuizAttempt.findOne({
-        user: userId,
-        quiz: quizId,
-        completed: false
-    });
-
-    if (!attempt) {
-        return res.status(404).json({
-            success: false,
-            message: 'No active quiz attempt found'
+        // Find the active quiz attempt
+        const attempt = await QuizAttempt.findOne({
+            userId: userId,
+            quizId: quizId,
+            completed: false
         });
-    }
 
-    const existingAnswerIndex = attempt.answers.findIndex(
-        a => a.questionId.toString() === questionId
-    );
-
-    const isCorrect = true; // Placeholder
-
-    if (existingAnswerIndex !== -1) {
-        attempt.answers[existingAnswerIndex] = {
-            questionId,
-            answer,
-            isCorrect
-        };
-    } else {
-        attempt.answers.push({
-            questionId,
-            answer,
-            isCorrect
-        });
-    }
-
-    await attempt.save();
-
-    res.json({
-        success: true,
-        message: 'Answer submitted successfully',
-        data: {
-            isCorrect,
-            attemptId: attempt._id
+        if (!attempt) {
+            return res.status(404).json({
+                success: false,
+                message: 'No active quiz attempt found'
+            });
         }
-    });
+
+        // Load quiz data
+        const dataPath = path.join(__dirname, '../data/quiz-data.json');
+        const rawData = await fs.readFile(dataPath, 'utf8');
+        const quizData = JSON.parse(rawData);
+
+        // Find the case and question
+        const currentCase = quizData.cases.find(c => c.id === quizId);
+        if (!currentCase) {
+            return res.status(404).json({
+                success: false,
+                message: 'Quiz not found'
+            });
+        }
+
+        const question = currentCase.sections.questions.multiple_choice.questions.find(q => q.id === questionId);
+        if (!question) {
+            return res.status(404).json({
+                success: false,
+                message: 'Question not found'
+            });
+        }
+
+        // Check if the answer is correct
+        const correctOption = question.options.find(opt => opt.isCorrect);
+        const isCorrect = answer === correctOption.id;
+
+        // Update the attempt with the new answer
+        const existingAnswerIndex = attempt.answers.findIndex(
+            a => a.questionId === questionId
+        );
+
+        if (existingAnswerIndex !== -1) {
+            attempt.answers[existingAnswerIndex] = {
+                questionId,
+                selectedAnswer: answer,
+                isCorrect
+            };
+        } else {
+            attempt.answers.push({
+                questionId,
+                selectedAnswer: answer,
+                isCorrect
+            });
+        }
+
+        // Calculate and update score
+        attempt.score = attempt.answers.filter(a => a.isCorrect).length;
+        await attempt.save();
+
+        res.json({
+            success: true,
+            message: isCorrect ? 'Correct answer!' : 'Incorrect answer',
+            data: {
+                isCorrect,
+                score: attempt.score,
+                attempt
+            }
+        });
+    } catch (error) {
+        console.error('Error in submitAnswer:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error submitting answer'
+        });
+    }
 };
 
 // Complete quiz
@@ -137,8 +174,8 @@ exports.completeQuiz = async (req, res) => {
     const userId = req.user._id;
 
     const attempt = await QuizAttempt.findOne({
-        user: userId,
-        quiz: quizId,
+        userId: userId,
+        quizId: quizId,
         completed: false
     });
 

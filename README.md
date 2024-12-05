@@ -1,94 +1,101 @@
-# Forensic Focus - Interactive Learning Platform
+# Forensic Case Study Quiz Application
 
-A comprehensive Node.js backend application for an interactive forensic science learning platform. This application enables students to test their knowledge through real-case scenarios and quizzes, while allowing instructors to manage content and track student progress.
+This application is designed to test knowledge of forensic investigation through interactive case studies. Each case includes evidence images, descriptions, and questions.
 
-## Features
+## Project Structure
 
-### User Features
-- Authentication (Register, Login, Logout)
-- University Email Validation
-- College ID Verification
-- View Available Quizzes
-- Take Quizzes
-- View Personal Grades
-
-### Admin Features
-- Authentication (Register, Login, Logout)
-- Quiz Management (Create, Update, Delete)
-- View All Quiz Attempts
-- Monitor Student Progress
-- Access Student Grades
-
-### Security Features
-- JWT Authentication
-- Password Hashing
-- Protected Routes
-- Input Validation
-
-## Prerequisites
-
-- Node.js (v14 or higher)
-- MongoDB
-- npm or yarn
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/forensic-focus.git
-cd forensic-focus
+```
+Project-02/
+├── src/
+│   ├── evidence/
+│   │   ├── case1/  # Desert Road Murders
+│   │   ├── case2/  # Park Assault Case
+│   │   └── case3/  # Fingerprint Mystery
+│   ├── data/
+│   │   └── quiz-data.json
+│   └── middleware/
+└── README.md
 ```
 
-2. Install dependencies:
-```bash
-npm install
+## Setup Instructions
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Ensure all images are placed in their respective case folders under `src/evidence/`.
+
+3. Start the application:
+   ```bash
+   npm start
+   ```
+
+## Case Studies
+
+1. **The Desert Road Murders**
+   - Investigation of bodies found in desert location
+   - Blood evidence analysis
+   - Crime scene documentation
+
+2. **The Park Assault Case**
+   - Victim injury documentation
+   - Blood evidence collection
+   - Professional investigation procedures
+
+3. **The Fingerprint Mystery**
+   - Fingerprint evidence analysis
+   - Crime scene investigation
+   - Evidence collection procedures
+
+## Image Organization
+
+Each case has its own folder with relevant evidence images:
+- Case 1: Body discovery, blood evidence, scene documentation
+- Case 2: Victim photos, crime scene, evidence collection
+- Case 3: Fingerprint evidence, investigation photos
+
+## API Endpoints
+
+### Authentication
+- `POST /api/users/register` - Register a new user
+- `POST /api/users/login` - Login user
+- `POST /api/users/logout` - Logout user
+
+### Quiz Routes (Protected)
+- `GET /api/users/quizzes` - Get all available quizzes
+- `POST /api/quiz/:quizId/start` - Start a quiz
+- `POST /api/quiz/:quizId/submit` - Submit an answer
+- `POST /api/quiz/:quizId/complete` - Complete a quiz
+- `GET /api/users/grades` - Get user's quiz grades
+
+### Admin Routes (Protected)
+- `POST /api/admin/login` - Admin login
+- `GET /api/admin/users` - Get all users
+- `GET /api/admin/quizzes` - Get all quizzes with attempts
+
+### Authentication
+All protected routes require a JWT token in the Authorization header:
+```
+Authorization: Bearer <your_jwt_token>
 ```
 
-3. Create a `.env` file in the root directory:
-```env
+## Environment Variables
+Create a `.env` file with the following:
+```
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/forensic-focus
-JWT_SECRET=your_jwt_secret_here
-NODE_ENV=development
 ```
-
-## Running the Application
-
-Development mode:
-```bash
-npm run dev
-```
-
-Production mode:
-```bash
-npm start
-```
-
-## API Documentation
-
-Detailed API documentation is available in the `API_Documentation.md` file, which includes:
-- All available endpoints
-- Request/Response formats
-- Authentication requirements
-- Example requests
-
-## Quiz Template
-
-A standardized quiz template is available in `question-template.json`. This template ensures consistency in quiz creation and includes:
-- Quiz title and description
-- Question format
-- Answer options structure
-- Correct answer designation
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-# -AhmedAbdelgelel-Forensic-Focus---Interactive-Learning-Platform-
