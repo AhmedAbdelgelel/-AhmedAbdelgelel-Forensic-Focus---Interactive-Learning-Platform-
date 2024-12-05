@@ -224,31 +224,46 @@ const deleteQuiz = async (req, res) => {
 // Get all quiz attempts
 const getAllQuizAttempts = async (req, res) => {
     try {
-        const attempts = await QuizAttempt.find({ completed: true })
-            .populate('userId', 'username email collegeId')
-            .populate('quizId', 'title description')
-            .select('userId quizId score percentage completedAt')
-            .sort('-completedAt');
+        // First get all quizzes to map their IDs
+        const quizzes = await Quiz.find().lean();
+        const quizIdMap = quizzes.reduce((map, quiz) => {
+            map[quiz.id] = quiz;
+            return map;
+        }, {});
 
-        const formattedAttempts = attempts.map(attempt => ({
-            username: attempt.userId.username,
-            email: attempt.userId.email,
-            collegeId: attempt.userId.collegeId,
-            quizTitle: attempt.quizId.title,
-            quizDescription: attempt.quizId.description,
-            score: attempt.score,
-            percentage: attempt.percentage,
-            completedAt: attempt.completedAt
-        }));
+        const attempts = await QuizAttempt.find()
+            .populate('userId', 'username email collegeId')
+            .lean();
+
+        const formattedAttempts = attempts.map(attempt => {
+            const quiz = quizIdMap[attempt.quizId] || {};
+            return {
+                id: attempt._id,
+                username: attempt.userId?.username || 'Unknown User',
+                email: attempt.userId?.email || 'No Email',
+                collegeId: attempt.userId?.collegeId || 'No ID',
+                quizId: attempt.quizId,
+                quizTitle: quiz.title || 'Unknown Quiz',
+                score: attempt.score || 0,
+                percentage: attempt.percentage || 0,
+                completed: attempt.completed || false,
+                startedAt: attempt.startedAt,
+                completedAt: attempt.completedAt,
+                answers: attempt.answers || []
+            };
+        });
 
         res.status(200).json({
             success: true,
+            count: formattedAttempts.length,
             data: formattedAttempts
         });
     } catch (error) {
+        console.error('Error in getAllQuizAttempts:', error);
         res.status(500).json({
             success: false,
-            message: 'Error fetching quiz attempts'
+            message: 'Error fetching quiz attempts',
+            error: error.message
         });
     }
 };
@@ -256,40 +271,52 @@ const getAllQuizAttempts = async (req, res) => {
 // Get all users' grades
 const getAllUsersGrades = async (req, res) => {
     try {
-        const users = await User.find().select('username email collegeId');
+        // First get all quizzes to map their IDs
+        const quizzes = await Quiz.find().lean();
+        const quizIdMap = quizzes.reduce((map, quiz) => {
+            map[quiz.id] = quiz;
+            return map;
+        }, {});
+
+        const users = await User.find().select('username email collegeId').lean();
         const grades = await Promise.all(
             users.map(async (user) => {
                 const attempts = await QuizAttempt.find({ 
                     userId: user._id,
                     completed: true 
-                })
-                .populate('quizId', 'title description')
-                .select('quizId score percentage completedAt')
-                .sort('-completedAt');
+                }).lean();
 
                 return {
                     username: user.username,
                     email: user.email,
                     collegeId: user.collegeId,
-                    attempts: attempts.map(attempt => ({
-                        quizTitle: attempt.quizId.title,
-                        quizDescription: attempt.quizId.description,
-                        score: attempt.score,
-                        percentage: attempt.percentage,
-                        completedAt: attempt.completedAt
-                    }))
+                    attempts: attempts.map(attempt => {
+                        const quiz = quizIdMap[attempt.quizId] || {};
+                        return {
+                            quizId: attempt.quizId,
+                            quizTitle: quiz.title || 'Unknown Quiz',
+                            quizDescription: quiz.sections?.overview?.content || 'No description available',
+                            score: attempt.score || 0,
+                            percentage: attempt.percentage || 0,
+                            completedAt: attempt.completedAt,
+                            answers: attempt.answers || []
+                        };
+                    })
                 };
             })
         );
 
         res.status(200).json({
             success: true,
+            count: grades.length,
             data: grades
         });
     } catch (error) {
+        console.error('Error in getAllUsersGrades:', error);
         res.status(500).json({
             success: false,
-            message: 'Error fetching user grades'
+            message: 'Error fetching user grades',
+            error: error.message
         });
     }
 };
@@ -297,8 +324,10 @@ const getAllUsersGrades = async (req, res) => {
 // Get specific user's grades
 const getUserGrades = async (req, res) => {
     try {
-        const user = await User.findById(req.params.userId).select('username email collegeId');
+        const { userId } = req.params;
         
+        // Find the user
+        const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({
                 success: false,
@@ -306,35 +335,57 @@ const getUserGrades = async (req, res) => {
             });
         }
 
-        const attempts = await QuizAttempt.find({ 
-            userId: user._id,
-            completed: true 
-        })
-        .populate('quizId', 'title description')
-        .select('quizId score percentage completedAt')
-        .sort('-completedAt');
+        // Get quiz data from JSON file
+        const quizData = require('../data/quiz-data.json');
+        const quizMap = quizData.cases.reduce((map, quiz) => {
+            map[quiz.id] = quiz;
+            return map;
+        }, {});
 
-        const grades = {
-            username: user.username,
-            email: user.email,
-            collegeId: user.collegeId,
-            attempts: attempts.map(attempt => ({
-                quizTitle: attempt.quizId.title,
-                quizDescription: attempt.quizId.description,
-                score: attempt.score,
-                percentage: attempt.percentage,
-                completedAt: attempt.completedAt
-            }))
-        };
+        // Get all attempts for this user
+        const attempts = await QuizAttempt.find({
+            userId: userId
+        }).lean();
+
+        const formattedAttempts = attempts.map(attempt => {
+            const quiz = quizMap[attempt.quizId] || {};
+            return {
+                id: attempt._id,
+                quizId: attempt.quizId,
+                quizTitle: quiz.title || 'Unknown Quiz',
+                quizDescription: quiz.sections?.overview?.content || 'No description available',
+                score: attempt.score || 0,
+                percentage: attempt.percentage || 0,
+                completed: attempt.completed || false,
+                startedAt: attempt.startedAt,
+                completedAt: attempt.completedAt,
+                answers: attempt.answers.map(ans => ({
+                    questionId: ans.questionId,
+                    selectedAnswer: ans.selectedAnswer,
+                    isCorrect: ans.isCorrect
+                }))
+            };
+        });
 
         res.status(200).json({
             success: true,
-            data: grades
+            data: {
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    collegeId: user.collegeId
+                },
+                attempts: formattedAttempts
+            }
         });
+
     } catch (error) {
+        console.error('Error in getUserGrades:', error);
         res.status(500).json({
             success: false,
-            message: 'Error fetching user grades'
+            message: 'Error fetching user grades',
+            error: error.message
         });
     }
 };

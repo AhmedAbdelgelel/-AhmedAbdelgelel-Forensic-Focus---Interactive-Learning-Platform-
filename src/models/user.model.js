@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please provide your college ID'],
         unique: true,
         match: [
-            /^[0-9]{8}$/,
-            'College ID must be 8 digits'
+            /^[0-9]{10}$/,
+            'College ID must be 10 digits'
         ]
     },
     password: {

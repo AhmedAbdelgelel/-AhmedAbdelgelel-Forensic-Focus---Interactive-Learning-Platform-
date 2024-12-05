@@ -258,16 +258,23 @@ const getGrades = async (req, res) => {
             userId: req.user.id,
             completed: true 
         })
-        .populate('quizId', 'title description')
-        .select('quizId score completedAt percentage')
+        .populate('quizId', 'id title sections.overview.content')
         .sort('-completedAt');
 
         const grades = attempts.map(attempt => ({
+            quizId: attempt.quizId.id,
             quizTitle: attempt.quizId.title,
-            quizDescription: attempt.quizId.description,
+            quizDescription: attempt.quizId.sections.overview.content,
             score: attempt.score,
             percentage: attempt.percentage,
-            completedAt: attempt.completedAt
+            totalQuestions: attempt.answers.length,
+            correctAnswers: attempt.answers.filter(a => a.isCorrect).length,
+            completedAt: attempt.completedAt,
+            answers: attempt.answers.map(answer => ({
+                questionId: answer.questionId,
+                selectedAnswer: answer.selectedAnswer,
+                isCorrect: answer.isCorrect
+            }))
         }));
 
         res.status(200).json({
@@ -275,9 +282,11 @@ const getGrades = async (req, res) => {
             data: grades
         });
     } catch (error) {
+        console.error('Error in getGrades:', error);
         res.status(500).json({
             success: false,
-            message: 'Error fetching grades'
+            message: 'Error fetching grades',
+            error: error.message
         });
     }
 };

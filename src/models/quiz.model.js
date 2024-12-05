@@ -1,29 +1,46 @@
 const mongoose = require('mongoose');
 
+const optionSchema = new mongoose.Schema({
+    id: String,
+    text: String,
+    isCorrect: Boolean
+});
+
+const questionSchema = new mongoose.Schema({
+    id: String,
+    question: String,
+    options: [optionSchema],
+    image: String
+});
+
+const multipleChoiceSchema = new mongoose.Schema({
+    title: String,
+    questions: [questionSchema]
+});
+
 const quizSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true
+    },
     title: {
         type: String,
-        required: [true, 'Please provide a quiz title'],
-        trim: true
+        required: true
     },
-    description: {
-        type: String,
-        required: [true, 'Please provide a quiz description']
-    },
-    questions: [{
-        question: {
-            type: String,
-            required: true
+    sections: {
+        overview: {
+            content: String,
+            image: String
         },
-        options: [{
-            type: String,
-            required: true
-        }],
-        correctAnswer: {
-            type: String,
-            required: true
+        available_evidence: {
+            content: [String],
+            images: [String]
+        },
+        questions: {
+            multiple_choice: multipleChoiceSchema
         }
-    }]
+    }
 }, {
     timestamps: true
 });

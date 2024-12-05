@@ -27,3 +27,12 @@ logs/
 dist/
 build/
 coverage/
+
+# Executable files
+*.exe
+*.msi
+*.dll
+*.bin
+
+# Postman
+PostmanSetup*

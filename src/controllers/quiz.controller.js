@@ -1,27 +1,37 @@
 const Case = require('../models/case.model');
 const Progress = require('../models/progress.model');
 const QuizAttempt = require('../models/quizAttempt.model');
-const fs = require('fs').promises;
 const path = require('path');
+const fs = require('fs').promises;
 const Quiz = require('../models/quiz.model');
 
-// Function to clear cases
-const clearCases = async () => {
+// Function to clear cases and quizzes
+const clearData = async () => {
     await Case.deleteMany({});
+    await Quiz.deleteMany({});
 };
 
-// Initialize database with cases from JSON
-const initializeCases = async () => {
-    await clearCases();
+// Initialize database with cases and quizzes from JSON
+const initializeData = async () => {
+    await clearData();
     
     const dataPath = path.join(__dirname, '../data/quiz-data.json');
     const rawData = await fs.readFile(dataPath, 'utf8');
-    const quizData = JSON.parse(rawData);
-    await Case.insertMany(quizData.cases);
+    const data = JSON.parse(rawData);
+    
+    // Import cases as both cases and quizzes
+    const quizzes = data.cases.map(caseData => ({
+        id: caseData.id,
+        title: caseData.title,
+        sections: caseData.sections
+    }));
+    
+    await Case.insertMany(data.cases);
+    await Quiz.insertMany(quizzes);
 };
 
 // Call initialization
-initializeCases();
+initializeData();
 
 // Get all available cases and quizzes
 exports.getQuizzes = async (req, res) => {
@@ -48,36 +58,55 @@ exports.getQuizzes = async (req, res) => {
 
 // Start a new quiz attempt
 exports.startQuiz = async (req, res) => {
-    const { quizId } = req.params;
-    const userId = req.user._id;
+    try {
+        const { quizId } = req.params;
+        const userId = req.user._id;
 
-    const existingAttempt = await QuizAttempt.findOne({
-        userId: userId,
-        quizId: quizId,
-        completed: false
-    });
+        // First find the quiz
+        const quiz = await Quiz.findOne({ id: quizId });
+        if (!quiz) {
+            return res.status(404).json({
+                success: false,
+                message: 'Quiz not found'
+            });
+        }
 
-    if (existingAttempt) {
-        return res.json({
+        // Check for existing attempt
+        const existingAttempt = await QuizAttempt.findOne({
+            userId: userId,
+            quizId: quiz._id,
+            completed: false
+        });
+
+        if (existingAttempt) {
+            return res.json({
+                success: true,
+                message: 'Continuing existing attempt',
+                data: existingAttempt
+            });
+        }
+
+        // Create new attempt with quiz._id
+        const newAttempt = await QuizAttempt.create({
+            userId: userId,
+            quizId: quiz._id,
+            answers: [],
+            score: 0,
+            startedAt: new Date()
+        });
+
+        res.json({
             success: true,
-            message: 'Continuing existing attempt',
-            data: existingAttempt
+            message: 'Quiz started successfully',
+            data: newAttempt
+        });
+    } catch (error) {
+        console.error('Error starting quiz:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error starting quiz'
         });
     }
-
-    const newAttempt = await QuizAttempt.create({
-        userId: userId,
-        quizId: quizId,
-        answers: [],
-        score: 0,
-        startedAt: new Date()
-    });
-
-    res.json({
-        success: true,
-        message: 'Quiz started successfully',
-        data: newAttempt
-    });
 };
 
 // Submit answer for quiz
@@ -87,10 +116,19 @@ exports.submitAnswer = async (req, res) => {
         const { questionId, answer } = req.body;
         const userId = req.user._id;
 
-        // Find the active quiz attempt
+        // First find the quiz by case ID
+        const quiz = await Quiz.findOne({ id: quizId });
+        if (!quiz) {
+            return res.status(404).json({
+                success: false,
+                message: 'Quiz not found'
+            });
+        }
+
+        // Find the active quiz attempt using MongoDB ID
         const attempt = await QuizAttempt.findOne({
             userId: userId,
-            quizId: quizId,
+            quizId: quiz._id,
             completed: false
         });
 
@@ -111,7 +149,7 @@ exports.submitAnswer = async (req, res) => {
         if (!currentCase) {
             return res.status(404).json({
                 success: false,
-                message: 'Quiz not found'
+                message: 'Quiz not found in data'
             });
         }
 
@@ -148,6 +186,16 @@ exports.submitAnswer = async (req, res) => {
 
         // Calculate and update score
         attempt.score = attempt.answers.filter(a => a.isCorrect).length;
+        
+        // Calculate percentage if all questions are answered
+        const totalQuestions = currentCase.sections.questions.multiple_choice.questions.length;
+        attempt.percentage = (attempt.score / totalQuestions) * 100;
+        
+        if (attempt.answers.length === totalQuestions) {
+            attempt.completed = true;
+            attempt.completedAt = new Date();
+        }
+
         await attempt.save();
 
         res.json({
@@ -156,6 +204,8 @@ exports.submitAnswer = async (req, res) => {
             data: {
                 isCorrect,
                 score: attempt.score,
+                percentage: attempt.percentage,
+                completed: attempt.completed,
                 attempt
             }
         });
@@ -209,11 +259,25 @@ exports.completeQuiz = async (req, res) => {
 
 // Get quiz history
 exports.getQuizHistory = async (req, res) => {
-    const formattedAttempts = await Quiz.find();
-    res.json({
-        success: true,
-        data: formattedAttempts
-    });
+    try {
+        const attempts = await QuizAttempt.find({ userId: req.user._id })
+            .populate({
+                path: 'userId',
+                select: 'username'
+            })
+            .select('quizId score completed startedAt completedAt answers');
+
+        res.json({
+            success: true,
+            data: attempts
+        });
+    } catch (error) {
+        console.error('Error in getQuizHistory:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching quiz history'
+        });
+    }
 };
 
 // Get single quiz

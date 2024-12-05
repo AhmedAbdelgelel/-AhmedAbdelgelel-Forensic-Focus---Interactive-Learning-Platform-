@@ -28,6 +28,10 @@ const quizAttemptSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    percentage: {
+        type: Number,
+        default: 0
+    },
     completed: {
         type: Boolean,
         default: false

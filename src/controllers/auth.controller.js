@@ -10,11 +10,11 @@ exports.register = async (req, res) => {
         const { username, email, collegeId, password } = req.body;
 
         // Validate college ID format (assuming it's a specific format for Mansoura University)
-        const collegeIdRegex = /^[0-9]{8}$/; // Assuming 8-digit college ID
+        const collegeIdRegex = /^[0-9]{10}$/; // 10-digit college ID
         if (!collegeIdRegex.test(collegeId)) {
             return res.status(400).json({
                 success: false,
-                message: 'Please provide a valid 8-digit college ID'
+                message: 'Please provide a valid 10-digit college ID'
             });
         }
 

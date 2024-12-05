@@ -10,6 +10,7 @@ const {
     submitQuiz,
     getGrades
 } = require('../controllers/user.controller');
+const { getUserAttempts } = require('../controllers/quizAttempt.controller');
 
 // Public routes
 router.post('/register', register);
@@ -27,6 +28,7 @@ protectedRouter.post('/quizzes/:id/submit', submitQuiz);
 
 // Grade routes
 protectedRouter.get('/grades', getGrades);
+protectedRouter.get('/attempts', getUserAttempts);
 
 // Use protected routes
 router.use('/', protectedRouter);

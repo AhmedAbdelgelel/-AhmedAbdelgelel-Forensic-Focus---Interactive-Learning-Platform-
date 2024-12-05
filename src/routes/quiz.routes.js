@@ -6,9 +6,9 @@ const {
     getCase,
     startQuiz,
     submitAnswer,
-    completeQuiz,
-    getQuizHistory
+    completeQuiz
 } = require('../controllers/quiz.controller');
+const { getUserAttempts } = require('../controllers/quizAttempt.controller');
 const { protect } = require('../middleware/auth');
 
 // Public routes
@@ -16,8 +16,8 @@ router.get('/', getQuizzes);
 router.get('/case/:id', getCase);
 
 // Protected routes
-router.get('/history', protect, getQuizHistory);
-router.post('/:quizId/start', protect, startQuiz);
+router.get('/history', protect, getUserAttempts);
+router.post('/case/:quizId/start', protect, startQuiz);
 router.post('/:quizId/submit', protect, submitAnswer);
 router.post('/:quizId/complete', protect, completeQuiz);
 

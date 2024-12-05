@@ -1,0 +1,80 @@
+[
+  {
+    "title": "The Desert Road Murders",
+    "description": "Investigation of bodies discovered in the desert",
+    "questions": [
+      {
+        "question": "What evidence was found at the desert crime scene?",
+        "options": [
+          "Only footprints",
+          "Two bodies and blood evidence",
+          "Just some clothing",
+          "No evidence"
+        ],
+        "correctAnswer": "Two bodies and blood evidence"
+      },
+      {
+        "question": "What type of evidence was collected at the scene?",
+        "options": [
+          "Only photographs",
+          "Blood pattern and physical evidence",
+          "No evidence was collected",
+          "Just measurements"
+        ],
+        "correctAnswer": "Blood pattern and physical evidence"
+      }
+    ]
+  },
+  {
+    "title": "The Park Assault Case",
+    "description": "Investigation of a violent assault with multiple evidence types",
+    "questions": [
+      {
+        "question": "What type of injuries were documented?",
+        "options": [
+          "No injuries",
+          "Assault injuries and blood evidence",
+          "Only minor scratches",
+          "Burns"
+        ],
+        "correctAnswer": "Assault injuries and blood evidence"
+      },
+      {
+        "question": "How was evidence collected at the scene?",
+        "options": [
+          "No collection was done",
+          "Professional evidence collection and documentation",
+          "Only photographs",
+          "Random collection"
+        ],
+        "correctAnswer": "Professional evidence collection and documentation"
+      }
+    ]
+  },
+  {
+    "title": "The Fingerprint Mystery",
+    "description": "Investigation of a suspicious death in a locked room",
+    "questions": [
+      {
+        "question": "What key evidence was found in the locked room?",
+        "options": [
+          "Nothing",
+          "Fingerprints and other forensic evidence",
+          "Only dust",
+          "Just furniture"
+        ],
+        "correctAnswer": "Fingerprints and other forensic evidence"
+      },
+      {
+        "question": "How was the evidence documented?",
+        "options": [
+          "No documentation",
+          "Thorough documentation with photos and notes",
+          "Just a quick look",
+          "Verbal description only"
+        ],
+        "correctAnswer": "Thorough documentation with photos and notes"
+      }
+    ]
+  }
+]
