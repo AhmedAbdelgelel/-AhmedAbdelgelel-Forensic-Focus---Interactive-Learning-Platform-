@@ -1,345 +1,113 @@
 # Forensic Case Study API Documentation
 
-Base URL: `http://localhost:3000/api`
+## Base URL
+```
+http://localhost:5001/api
+```
+
+## Authentication
+All endpoints except registration and login require a valid JWT token in the Authorization header.
+
+### Test Account Credentials
+```
+Email: test.user@mans.edu.eg
+Password: Test@12345
+```
 
 ## Authentication Endpoints
 
 ### 1. Register User
-- **Method**: POST
-- **Endpoint**: `/auth/register`
-- **Body**:
-```json
-{
-    "username": "testuser",
-    "email": "test@example.com",
-    "password": "password123"
-}
-```
-- **Response**:
-```json
-{
-    "success": true,
-    "token": "jwt_token_here",
-    "data": {
-        "user": {
-            "id": "user_id",
-            "username": "testuser",
-            "email": "test@example.com"
-        }
-    }
-}
-```
+```http
+POST /auth/register
+Content-Type: application/json
 
-### 2. Login
-- **Method**: POST
-- **Endpoint**: `/auth/login`
-- **Body**:
-```json
 {
-    "email": "test@example.com",
-    "password": "password123"
+    "name": "Test User",
+    "email": "test.user@mans.edu.eg",
+    "password": "Test@12345"
 }
 ```
-- **Response**:
-```json
-{
-    "success": true,
-    "token": "jwt_token_here"
-}
-```
+Note: Email must be a valid Mansoura University email (@mans.edu.eg)
 
-### 3. Get Current User
-- **Method**: GET
-- **Endpoint**: `/auth/me`
-- **Headers**: 
-  - Authorization: Bearer {token}
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "user": {
-            "id": "user_id",
-            "username": "testuser",
-            "email": "test@example.com"
-        }
-    }
-}
-```
+### 2. Login User
+```http
+POST /auth/login
+Content-Type: application/json
 
-### 4. User Logout
-- **Method**: POST
-- **Endpoint**: `/users/logout`
-- **Headers**:
-  - `Authorization`: Bearer token
-- **Response**:
-```json
 {
-    "success": true,
-    "message": "Logged out successfully"
+    "email": "test.user@mans.edu.eg",
+    "password": "Test@12345"
 }
 ```
+Response includes JWT token to be used in subsequent requests.
 
 ## Quiz Endpoints
 
-### 1. Get All Cases
-- **Method**: GET
-- **Endpoint**: `/quiz/cases`
-- **Headers**: 
-  - Authorization: Bearer {token}
-- **Response**:
+### 1. Get Available Quizzes
+```http
+GET /quiz/available
+Authorization: Bearer <your_jwt_token>
+```
+
+### 2. Get Questions for a Case
+```http
+GET /quiz/:caseId/questions
+Authorization: Bearer <your_jwt_token>
+```
+Replace `:caseId` with the case number (1, 2, or 3)
+
+### 3. Submit Quiz Answers
+```http
+POST /quiz/:caseId/submit
+Authorization: Bearer <your_jwt_token>
+Content-Type: application/json
+
+{
+    "answers": ["A", "B", "C", "D"]  // Array of answer choices
+}
+```
+
+### 4. Get User Progress
+```http
+GET /quiz/progress
+Authorization: Bearer <your_jwt_token>
+```
+
+## Response Format
+All responses follow this general format:
 ```json
 {
-    "success": true,
+    "status": "success",
     "data": {
-        "cases": [
-            {
-                "id": "case-001",
-                "title": "Case Title",
-                "sections": {}
-            }
-        ]
+        // Response data specific to each endpoint
     }
 }
 ```
-
-### 2. Get Specific Case
-- **Method**: GET
-- **Endpoint**: `/quiz/cases/:id`
-- **Headers**: 
-  - Authorization: Bearer {token}
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "case": {
-            "id": "case-001",
-            "title": "Case Title",
-            "sections": {},
-            "questions": {}
-        }
-    }
-}
-```
-
-### 3. Submit Answers
-- **Method**: POST
-- **Endpoint**: `/quiz/cases/:id/submit`
-- **Headers**: 
-  - Authorization: Bearer {token}
-- **Body**:
-```json
-{
-    "multipleChoice": [
-        {
-            "id": "mc1",
-            "answer": "b"
-        }
-    ],
-    "criticalThinking": [
-        {
-            "id": "ct1",
-            "answer": "Detailed answer here"
-        }
-    ]
-}
-```
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "progress": {
-            "scores": {
-                "multipleChoice": 80,
-                "criticalThinking": 0,
-                "total": 40
-            }
-        }
-    }
-}
-```
-
-## Admin Endpoints
-
-### 1. Create Case
-- **Method**: POST
-- **Endpoint**: `/admin/cases`
-- **Headers**: 
-  - Authorization: Bearer {admin_token}
-- **Body**:
-```json
-{
-    "id": "case-001",
-    "title": "New Case",
-    "sections": {
-        "overview": {
-            "content": "Case overview",
-            "image": "/evidence/case1/overview.jpg"
-        }
-    },
-    "questions": {
-        "multiple_choice": {
-            "title": "Multiple Choice",
-            "questions": [
-                {
-                    "id": "mc1",
-                    "question": "Question text",
-                    "options": [
-                        {
-                            "id": "a",
-                            "text": "Option A",
-                            "isCorrect": false
-                        },
-                        {
-                            "id": "b",
-                            "text": "Option B",
-                            "isCorrect": true
-                        }
-                    ]
-                }
-            ]
-        }
-    }
-}
-```
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "case": {
-            "id": "case-001",
-            "title": "New Case"
-        }
-    }
-}
-```
-
-### 2. Update Case
-- **Method**: PUT
-- **Endpoint**: `/admin/cases/:id`
-- **Headers**: 
-  - Authorization: Bearer {admin_token}
-- **Body**: Same as Create Case
-- **Response**: Same as Create Case
-
-### 3. Grade Critical Thinking
-- **Method**: POST
-- **Endpoint**: `/admin/progress/:progressId/grade`
-- **Headers**: 
-  - Authorization: Bearer {admin_token}
-- **Body**:
-```json
-{
-    "grades": [
-        {
-            "questionId": "ct1",
-            "score": 4,
-            "feedback": "Good analysis, but could provide more detail"
-        }
-    ]
-}
-```
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "progress": {
-            "scores": {
-                "multipleChoice": 80,
-                "criticalThinking": 80,
-                "total": 80
-            }
-        }
-    }
-}
-```
-
-### 4. Get Case Submissions
-- **Method**: GET
-- **Endpoint**: `/admin/cases/:caseId/submissions`
-- **Headers**: 
-  - Authorization: Bearer {admin_token}
-- **Response**:
-```json
-{
-    "success": true,
-    "data": {
-        "submissions": [
-            {
-                "user": {
-                    "username": "testuser",
-                    "email": "test@example.com"
-                },
-                "scores": {
-                    "multipleChoice": 80,
-                    "criticalThinking": 80,
-                    "total": 80
-                },
-                "completedAt": "2024-01-01T00:00:00.000Z"
-            }
-        ]
-    }
-}
-```
-
-### 5. Admin Logout
-- **Method**: POST
-- **Endpoint**: `/admin/logout`
-- **Headers**:
-  - `Authorization`: Bearer token
-- **Response**:
-```json
-{
-    "success": true,
-    "message": "Admin logged out successfully"
-}
-```
-
-## Testing in Postman
-
-1. **Environment Setup**:
-   - Create a new environment called "Forensic Quiz API"
-   - Add variables:
-     - `baseUrl`: http://localhost:3000/api
-     - `token`: (leave empty initially)
-
-2. **Collection Setup**:
-   - Create a new collection called "Forensic Quiz API"
-   - Import all the endpoints
-   - Use the environment variables in your requests: {{baseUrl}}/auth/login
-
-3. **Authentication Flow**:
-   - Register a new user
-   - Login to get the token
-   - The token will be automatically set for subsequent requests
-
-4. **Testing Sequence**:
-   1. Register/Login
-   2. Get available cases
-   3. Get specific case details
-   4. Submit answers
-   5. Admin: Create new cases
-   6. Admin: Grade submissions
 
 ## Error Handling
-
-All endpoints follow this error response format:
+Errors return with appropriate HTTP status codes and messages:
 ```json
 {
-    "success": false,
-    "message": "Error description here"
+    "status": "error",
+    "message": "Error description"
 }
 ```
 
-Common HTTP Status Codes:
-- 200: Success
-- 201: Created
-- 400: Bad Request
-- 401: Unauthorized
-- 403: Forbidden
-- 404: Not Found
-- 500: Server Error
+## Quiz Cases Overview
+1. Case 1: Body Found in Car (4 questions)
+2. Case 2: Elderly Woman Death (4 questions)
+3. Case 3: Desert Road Corpses (5 questions)
+
+## Score Tracking
+Each case tracks:
+- Quiz score
+- Evidence analysis score
+- Critical thinking score
+- Completion status
+- Last attempt timestamp
+
+## Development Notes
+- Server runs on port 5001
+- MongoDB required for database
+- JWT used for authentication
+- Rate limiting implemented for security

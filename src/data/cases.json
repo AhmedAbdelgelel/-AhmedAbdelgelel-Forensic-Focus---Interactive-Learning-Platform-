@@ -1,0 +1,363 @@
+{
+  "cases": [
+    {
+      "case_id": 1,
+      "overview": "In a tragic incident that took place in one of Cairo’s streets, the body of a young man in his twenties was found inside his car, which was parked on the side of the road. The victim was driving the car in the final moments, but was killed before he could leave the vehicle. He suffered a fatal head injury from a powerful blow to his forehead, causing immediate death. The car was locked from the inside, and there were no signs of robbery or other criminal activities indicating any motive other than premeditated murder.",
+      "available_evidence": [
+        {
+          "evidence_type": "Victim",
+          "description": "The young man in his twenties was found dead inside his car, having suffered a severe head injury from a powerful blow to his forehead. The body was examined by forensic experts who confirmed that the cause of death was a blunt force trauma causing severe internal bleeding in the head."
+        },
+        {
+          "evidence_type": "Fingerprints",
+          "description": "Fingerprints belonging to the victim were found on the steering wheel, suggesting that he was driving the car when the incident occurred. However, other fingerprints were also found on the door handle inside the car, which could suggest that the perpetrator entered the car after the attack."
+        },
+        {
+          "evidence_type": "Spent Shell Casing",
+          "description": "A spent shell casing was found near the car, which indicates that a firearm was used in the crime. The type of weapon has not been identified yet, but the casing may help determine it through forensic analysis."
+        },
+        {
+          "evidence_type": "Blow to the Forehead",
+          "description": "The injury to the victim’s forehead was severe enough to cause immediate death, indicating that the blow was decisive and deliberately aimed at a vulnerable spot."
+        },
+        {
+          "evidence_type": "Witnesses",
+          "description": "There were no direct eyewitnesses, but some neighbors reported hearing a gunshot in the area at the time of the incident. Additionally, there are security cameras near the scene, which may assist in identifying the person who approached the car or the movements of the perpetrator."
+        }
+      ],
+      "preliminary_analysis": {
+        "possible_motives": "The crime may have resulted from a personal dispute, or it could have been a premeditated murder. The absence of signs of theft suggests that the murder was driven by personal animosity or a desire for revenge.",
+        "time_and_place": "The incident occurred late at night or in the early hours of the morning, suggesting that the area was quiet. This indicates that the perpetrator was familiar with the area and likely intended to commit the crime during a time with minimal witnesses.",
+        "forensic_evidence": "Analyzing the spent shell casing could reveal the type of firearm used in the crime. Furthermore, examining the fingerprints inside the car may help identify the perpetrator if they match a criminal database.",
+        "potential_witnesses": "Investigations are underway with neighbors who heard the gunshot, and security cameras near the scene are being reviewed for any footage that could help identify the perpetrator or a vehicle that was present in the area."
+      },
+      "objective": [
+        "Analyze the spent shell casing to identify the type of firearm used in the crime.",
+        "Examine the fingerprints found inside the car to compare with potential suspects from the criminal database.",
+        "Interview witnesses who heard the gunshot or may have information about the perpetrator’s movements.",
+        "Review security camera footage from nearby cameras to identify the perpetrator or gather any useful details for the investigation."
+      ],
+      "questions": {
+        "multiple_choice": [
+          {
+            "question": "How was the victim killed?",
+            "options": [
+              "A) By a knife",
+              "B) By gunshot",
+              "C) Blow to the head",
+              "D) Stabbed with a sharp object"
+            ],
+            "correct_answer": "C) Blow to the head"
+          },
+          {
+            "question": "What was found near the car?",
+            "options": [
+              "A) A piece of clothing",
+              "B) A spent shell casing",
+              "C) A mobile phone",
+              "D) A handbag"
+            ],
+            "correct_answer": "B) A spent shell casing"
+          },
+          {
+            "question": "What type of weapon was used in the crime?",
+            "options": [
+              "A) Knife",
+              "B) Pistol",
+              "C) Iron rod",
+              "D) Sharp object"
+            ],
+            "correct_answer": "B) Pistol"
+          },
+          {
+            "question": "Where were the fingerprints found?",
+            "options": [
+              "A) On the car window",
+              "B) On the steering wheel",
+              "C) On the front seat",
+              "D) On the car’s exterior door handle"
+            ],
+            "correct_answer": "B) On the steering wheel"
+          }
+        ],
+        "open_ended": [
+          {
+            "question": "How can the spent shell casing help identify the type of weapon used?"
+          },
+          {
+            "question": "How could the fingerprints found inside the car help identify the perpetrator?"
+          },
+          {
+            "question": "What role could security camera footage play in the investigation?"
+          },
+          {
+            "question": "Why is knowing the time of the incident important for the investigation?"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": 2,
+      "overview": "This case involves the suspicious death of an elderly woman in her apartment. She was found unconscious, with signs of struggle and bruising around her neck. The cause of death was asphyxiation. A broken window and a missing purse were found at the scene, but there was no sign of forced entry.",
+      "available_evidence": [
+        {
+          "evidence_type": "Victim",
+          "description": "The elderly woman was found unconscious, later confirmed to have died from asphyxiation. There were signs of a struggle, including bruising around her neck, which indicates she was strangled before her death."
+        },
+        {
+          "evidence_type": "Broken Window",
+          "description": "A broken window was found at the scene. However, it was unclear whether it was broken during the crime or if it was staged to appear like a break-in."
+        },
+        {
+          "evidence_type": "Missing Purse",
+          "description": "A purse belonging to the victim was missing, suggesting a potential robbery, though no other signs of theft were found."
+        }
+      ],
+      "preliminary_analysis": {
+        "possible_motives": "The case may have involved a robbery that went wrong, or it could have been a personal attack. The absence of forced entry suggests the victim may have known the perpetrator.",
+        "time_and_place": "The incident likely occurred late in the evening when the victim was alone, and the area was quiet. The lack of forced entry may suggest the victim was familiar with the attacker.",
+        "forensic_evidence": "Forensic examination of the broken window and the bruising around the neck could provide insight into the nature of the struggle. Additionally, fingerprint analysis could identify potential suspects.",
+        "potential_witnesses": "Neighbors have been interviewed, and security footage from the building is being reviewed to identify any unusual activity around the time of the incident."
+      },
+      "objective": [
+        "Analyze the broken window to determine if it was part of the crime scene or staged.",
+        "Examine the bruising and signs of a struggle on the victim's body to gather forensic evidence.",
+        "Investigate the missing purse and review any possible connections to local crimes.",
+        "Interview potential witnesses, including neighbors and security staff."
+      ],
+      "questions": {
+        "multiple_choice": [
+          {
+            "question": "What was the cause of death?",
+            "options": [
+              "A) Poisoning",
+              "B) Stabbing",
+              "C) Asphyxiation",
+              "D) Blunt force trauma"
+            ],
+            "correct_answer": "C) Asphyxiation"
+          },
+          {
+            "question": "What was missing from the crime scene?",
+            "options": [
+              "A) A mobile phone",
+              "B) A purse",
+              "C) A wallet",
+              "D) A piece of jewelry"
+            ],
+            "correct_answer": "B) A purse"
+          },
+          {
+            "question": "What sign of struggle was found?",
+            "options": [
+              "A) Bruising around the neck",
+              "B) Blood stains on the floor",
+              "C) Broken furniture",
+              "D) Torn clothing"
+            ],
+            "correct_answer": "A) Bruising around the neck"
+          },
+          {
+            "question": "What was found at the crime scene?",
+            "options": [
+              "A) A broken window",
+              "B) A gunshot casing",
+              "C) A bloodstained knife",
+              "D) A missing key"
+            ],
+            "correct_answer": "A) A broken window"
+          }
+        ],
+        "open_ended": [
+          {
+            "question": "How could the broken window help in the investigation?"
+          },
+          {
+            "question": "What forensic evidence could reveal the nature of the struggle?"
+          },
+          {
+            "question": "How could the missing purse be related to the crime?"
+          },
+          {
+            "question": "What role could witness testimony play in solving the case?"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": 3,
+      "title": "Case of Two Corpses Found on the Desert Road",
+      "description": "In a horrifying incident that occurred on the desert road, two bodies were found buried just one meter below the surface. The bodies were in an advanced state of decomposition, suggesting that the crime took place some time ago. The following evidence was discovered near the bodies: a sharp knife, a cleaver, and traces of blood indicating that the victims were likely killed with a sharp object.\n\nThe location where the bodies were found reflects a remote area, which could suggest that the crime took place in an isolated spot, away from the sight of others. The bruises and wounds on the bodies suggest that the victims were subjected to a violent attack before their deaths.",
+      "difficulty": "Hard",
+      "image_url": "/images/case1.jpg",
+      "available_evidence": [
+        {
+          "evidence_type": "The Bodies",
+          "description": "Two bodies were discovered buried on the desert road. They were in an advanced stage of decomposition, indicating that a significant amount of time had passed since the crime."
+        },
+        {
+          "evidence_type": "Crime Tools",
+          "description": "A sharp knife and cleaver were found near the bodies, suggesting that these tools were used in the crime."
+        },
+        {
+          "evidence_type": "Blood Traces",
+          "description": "Traces of blood were found, indicating that the victims were likely stabbed or injured before their deaths."
+        },
+        {
+          "evidence_type": "The Location",
+          "description": "The desert road, which appears to be a secluded area, could have been chosen to conceal the crime."
+        }
+      ],
+      "preliminary_analysis": {
+        "possible_motives": "The murders could have been motivated by revenge or an attempted robbery. The tools used (knife and cleaver) suggest the nature of the attack.",
+        "time_and_place": "The location of the crime suggests that it may have occurred late at night or in a time of isolation when there was little chance of being seen.",
+        "forensic_evidence": "The blood traces and weapons can help identify the perpetrator, while autopsies on the bodies may reveal the cause of death.",
+        "potential_witnesses": "There are no direct witnesses to the crime, but investigators will attempt to find any potential surveillance footage or individuals with knowledge of the area who may have heard or seen something unusual."
+      },
+      "objective": [
+        "Thoroughly investigate the available evidence, including the sharp knife and cleaver found near the bodies.",
+        "Determine the cause of death through autopsies and forensic analysis of the bodies.",
+        "Analyze the blood traces to understand the nature of the attack and potentially identify the perpetrator.",
+        "Investigate the motive behind the crime, focusing on whether it was driven by revenge, robbery, or another reason."
+      ],
+      "evidenceAnalysisQuestions": [
+        {
+          "question": "Are the evidence found near the bodies useful in determining the cause of death?",
+          "options": [
+            {
+              "text": "A) Yes, the evidence clearly indicates that the killer used sharp tools",
+              "isCorrect": true,
+              "explanation": "The presence of a knife, cleaver, and blood traces strongly suggests the use of sharp weapons in the crime."
+            },
+            {
+              "text": "B) No, the evidence is insufficient to determine cause of death",
+              "isCorrect": false,
+              "explanation": "The evidence provides clear indicators of the cause of death through sharp weapons."
+            }
+          ]
+        },
+        {
+          "question": "What is the potential role of the blood traces in this case?",
+          "options": [
+            {
+              "text": "A) The blood traces can help identify the perpetrator",
+              "isCorrect": false,
+              "explanation": "While blood traces might help with identification, their primary value is in establishing the crime scene and method."
+            },
+            {
+              "text": "B) The blood traces indicate that the victims were killed at this location",
+              "isCorrect": true,
+              "explanation": "The presence of blood at the burial site suggests this was also the murder location."
+            }
+          ]
+        }
+      ],
+      "criticalThinkingQuestions": [
+        {
+          "question": "How can physical evidence, such as the knife and cleaver, impact the investigation in this case?",
+          "maxScore": 5,
+          "rubric": [
+            "Discussion of weapon type matching wounds",
+            "Mention of potential fingerprints",
+            "Analysis of blood patterns",
+            "Connection to cause of death",
+            "Consideration of premeditation"
+          ]
+        },
+        {
+          "question": "What steps should be taken to properly analyze the blood traces in this case?",
+          "maxScore": 5,
+          "rubric": [
+            "Proper collection methods",
+            "DNA analysis",
+            "Blood pattern analysis",
+            "Timeline considerations",
+            "Environmental factors"
+          ]
+        },
+        {
+          "question": "How can the burial site help determine the motives behind the crime?",
+          "maxScore": 5,
+          "rubric": [
+            "Location analysis",
+            "Burial method",
+            "Time consideration",
+            "Evidence of planning",
+            "Connection to perpetrator knowledge"
+          ]
+        }
+      ],
+      "questions": {
+        "multiple_choice": [
+          {
+            "question": "What was the condition of the bodies when they were found?",
+            "options": [
+              "A) Fresh and intact",
+              "B) In an advanced stage of decomposition",
+              "C) Mummified",
+              "D) Burnt"
+            ],
+            "correct_answer": "B) In an advanced stage of decomposition"
+          },
+          {
+            "question": "Which tools were found near the bodies?",
+            "options": [
+              "A) A hammer and rope",
+              "B) A sharp knife and cleaver",
+              "C) A gun and a baseball bat",
+              "D) A shovel and a wrench"
+            ],
+            "correct_answer": "B) A sharp knife and cleaver"
+          },
+          {
+            "question": "What does the blood trace found near the bodies indicate?",
+            "options": [
+              "A) The victims were poisoned",
+              "B) The victims were stabbed or injured before death",
+              "C) The victims were hit by a vehicle",
+              "D) The blood came from the attackers"
+            ],
+            "correct_answer": "B) The victims were stabbed or injured before death"
+          },
+          {
+            "question": "Why was the desert road likely chosen as the location of the crime?",
+            "options": [
+              "A) It was easily accessible",
+              "B) It was a secluded area, perfect for concealing the crime",
+              "C) It was a popular tourist destination",
+              "D) It was the victims’ usual route"
+            ],
+            "correct_answer": "B) It was a secluded area, perfect for concealing the crime"
+          },
+          {
+            "question": "What could be a possible motive for the murders?",
+            "options": [
+              "A) Random violence",
+              "B) Revenge or attempted robbery",
+              "C) Accidental death",
+              "D) Self-defense"
+            ],
+            "correct_answer": "B) Revenge or attempted robbery"
+          }
+        ],
+        "open_ended": [
+          {
+            "question": "How can the sharp knife and cleaver found at the crime scene help identify the method of the attack?"
+          },
+          {
+            "question": "Why is it important to analyze the blood traces found near the bodies? What can it reveal about the crime?"
+          },
+          {
+            "question": "How could the advanced decomposition of the bodies help estimate the time that has passed since the crime occurred?"
+          },
+          {
+            "question": "What could be the significance of the location of the crime (desert road)? How does it affect the investigation?"
+          },
+          {
+            "question": "How might forensic evidence, such as autopsy results, help in determining the cause of death and identifying the killer?"
+          }
+        ]
+      }
+    }
+  ]
+}
