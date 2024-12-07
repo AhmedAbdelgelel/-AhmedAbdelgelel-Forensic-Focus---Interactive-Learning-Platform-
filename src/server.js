@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/auth');
 const caseRoutes = require('./routes/cases');
-const quizRoutes = require('./routes/quizRoutes');
+const quizRoutes = require('./routes/quiz');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();

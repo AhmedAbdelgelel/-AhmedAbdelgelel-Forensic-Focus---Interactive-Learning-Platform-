@@ -119,16 +119,19 @@ exports.login = async (req, res, next) => {
 };
 
 // Logout user
-exports.logout = async (req, res, next) => {
+exports.logout = async (req, res) => {
     try {
-        // In a real implementation, you might want to invalidate the token
-        // For now, we'll just send a success response
-        res.json({
+        // Since we're using JWT, we don't need to do anything server-side
+        // The client should remove the token from their storage
+        res.status(200).json({
             status: 'success',
-            message: 'Logged out successfully'
+            message: 'Successfully logged out'
         });
     } catch (error) {
-        next(error);
+        res.status(500).json({
+            status: 'error',
+            message: 'Error logging out'
+        });
     }
 };
 

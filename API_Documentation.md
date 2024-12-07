@@ -41,6 +41,13 @@ Content-Type: application/json
 ```
 Response includes JWT token to be used in subsequent requests.
 
+### 3. Logout User
+```http
+POST /auth/logout
+Authorization: Bearer <your_jwt_token>
+```
+Note: Client should remove the JWT token from local storage after successful logout.
+
 ## Quiz Endpoints
 
 ### 1. Get Available Quizzes
